@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .ui-datepicker {
+            background-color: white;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                {{ form(form) }}
+            </div>
+            <div class="col-9">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nazwa</th>
+                        <th>Data</th>
+                        <th>Godzina</th>
+                        <th>Użytkownik</th>
+                        <th>Local</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in data %}
+                        <tr>
+                            <td>{{ row.name }}</td>
+                            <td>{{ row.exportDate | date("d.m.Y") }}</td>
+                            <td>{{ row.exportDate | date("H:i:s") }}</td>
+                            <td>{{ row.username }}</td>
+                            <td>{{ row.place }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="/site.js"></script>
+{% endblock %}
